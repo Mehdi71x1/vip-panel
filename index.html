@@ -37,10 +37,31 @@
         button:hover {
             background: darkgreen;
         }
-        video {
+        .video-container {
+            position: relative;
             width: 100%;
+            height: 300px;
             border-radius: 10px;
             margin-top: 10px;
+            background: #222;
+        }
+        .loading-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: none;
         }
     </style>
 </head>
@@ -51,18 +72,18 @@
 
     <div class="panel">
         <h2>✅ Full Antiban Drag Headshot + Location</h2>
-        <video controls>
-            <source src="scontent.fdac165-1.fna.fbcdn.net/o1/v/t2/f2/m69/AQOQyddYFFc3WrLWQ6wKIYpbMJANOgnvYMwtg2RraFQ7rg8ApveZDVooGMJLbBTcolHJDmKAFV8fFC-eZMb-YCPI.mp4?strext=1&_nc_cat=102&_nc_sid=8bf8fe&_nc_ht=scontent.fdac165-1.fna.fbcdn.net&_nc_ohc=QdPPevqITlsQ7kNvgHYXGYL&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuMzYwLnN2ZV9zZCIsInhwdl9hc3NldF9pZCI6NjM3NjE2MzI1MzA5MTc3LCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=9-4&_nc_zt=28&_nc_rml=0&_nc_eui2=AeH88ZMZyqrJx24wDJyvHJCp6jRjtZbPQKDqNGO1ls9AoEUA0NdKhaS3STIdH5WFHBwJjH6XRoKQqQdgl_GH8YPu&oh=00_AYC1s53YwPt20MKreb_0ysBqjxrXBPnm-zbENp_DdNyAVg&oe=67AB5601" type="video/mp4">
-            আপনার ব্রাউজার ভিডিও প্লে করতে পারে না।
-        </video>
+        <div class="video-container">
+            <div class="loading-text">ভিডিও লোডিং...</div>
+            <iframe src="https://archive.org/embed/compress-1738894845061" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+        </div>
     </div>
 
     <div class="panel">
         <h2>✅ Full Antiban Drag Headshot</h2>
-        <video controls>
-            <source src="scontent.fdac165-1.fna.fbcdn.net/o1/v/t2/f2/m69/AQOQyddYFFc3WrLWQ6wKIYpbMJANOgnvYMwtg2RraFQ7rg8ApveZDVooGMJLbBTcolHJDmKAFV8fFC-eZMb-YCPI.mp4?strext=1&_nc_cat=102&_nc_sid=8bf8fe&_nc_ht=scontent.fdac165-1.fna.fbcdn.net&_nc_ohc=QdPPevqITlsQ7kNvgHYXGYL&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuMzYwLnN2ZV9zZCIsInhwdl9hc3NldF9pZCI6NjM3NjE2MzI1MzA5MTc3LCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=9-4&_nc_zt=28&_nc_rml=0&_nc_eui2=AeH88ZMZyqrJx24wDJyvHJCp6jRjtZbPQKDqNGO1ls9AoEUA0NdKhaS3STIdH5WFHBwJjH6XRoKQqQdgl_GH8YPu&oh=00_AYC1s53YwPt20MKreb_0ysBqjxrXBPnm-zbENp_DdNyAVg&oe=67AB5601" type="video/mp4">
-            আপনার ব্রাউজার ভিডিও প্লে করতে পারে না।
-        </video>
+        <div class="video-container">
+            <div class="loading-text">ভিডিও লোডিং...</div>
+            <iframe src="https://archive.org/embed/compress-1738894845061" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+        </div>
     </div>
 
     <h2>👉 কিনতে চাইলে আমার সাথে যোগাযোগ করুন!</h2>
@@ -72,6 +93,19 @@
         function contactMe() {
             window.location.href = "https://wa.me/8801752396971";
         }
+
+        // ভিডিও লোড হয়ে গেলে "Loading" টেক্সট লুকিয়ে ফেলবে
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".video-container").forEach(container => {
+                const iframe = container.querySelector("iframe");
+                const loadingText = container.querySelector(".loading-text");
+
+                iframe.onload = function () {
+                    loadingText.style.display = "none";  // লোডিং টেক্সট লুকাবে
+                    iframe.style.display = "block";      // ভিডিও দেখাবে
+                };
+            });
+        });
     </script>
 
 </body>
